@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Champion Add</title>
+</head>
+<body>
+		<a th:href="@{'/champion/home/'}">Voltar</a>
+
+    <h1>Champion Add</h1>
+    
+        <h1>Champion Region</h1>
+			<tr th:each="region : ${regions}">
+				<td th:text="${region.id}"></td>
+				<td th:text="${region.name}"></td>
+				<br/>
+			</tr>
+    	
+    <h1>Champion Details</h1>
+	<form action="#" th:href="@{'/champion/add/'}" th:object="${champion}"  method="POST">
+    	Name:<input type="text" value="" name="name"/>
+    	Age:<input type="number" value="" name="age"/>
+    	Gender:<input type="text" value="" name="gender"/>
+    	<br/>
+    	Height:<input type="number" value="" name="height"/>
+    	Weight:<input type="number" value="" name="weight"/>
+    	Story:<input type="text" value="" name="story"/>
+    	<br/>
+    	Region:<input type="text" value="" name="region"/>
+    	Breed:<input type="text" value="" name="breed"/>
+    	Category:<input type="text" value="" name="category"/>
+    	<br/>
+    	Life:<input type="number" value="" name="life"/>
+    	Speed:<input type="number" value="" name="speed"/>
+    	Dexterity:<input type="number" value="" name="dexterity"/>
+    	<br/>
+    	Strength:<input type="number" value="" name="strength"/>
+    	Constitution:<input type="number" value="" name="constitution"/>
+    	Intelligence:<input type="number" value="" name="intelligence"/>
+    	<br/>
+    	Sanity:<input type="number" value="" name="sanity"/>
+    	Charisma:<input type="number" value="" name="charisma"/>
+    	<br/>
+		<button type="submit">Inserir</button>
+    </form>
+</body>
+</html>

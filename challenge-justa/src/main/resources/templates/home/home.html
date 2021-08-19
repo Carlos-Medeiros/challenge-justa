@@ -1,0 +1,36 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Home User</h1>
+		<div>
+			<p>UserName: <span th:text="${user.userName}"></span></p>
+			<p>Name: <span th:text="${user.name}"></span></p>
+			<p>Telefone: <span th:text="${user.phone}"></span></p>
+
+		</div>
+		
+		<a th:href="@{'/user/edit/' + ${user.id}}">Edit User</a>
+		
+		<h1>Adicionar Campeões</h1>
+		<a th:href="@{'/champion/home'}">Adicionar Campeão</a>
+
+		<h1>Deletar conta</h1>
+			<form action="#" th:action="@{/user/delete}" th:object="${user}"  method="POST">
+	    
+	    	<input type="hidden" th:field="${user.id}"/>
+	    	<input type="hidden" th:field="${user.userName}" name="userName"/>
+	    	<input type="hidden" th:field="${user.name}" name="name"/>
+	    	<input type="hidden" th:field="${user.password}" name="password"/>
+	    	<input type="hidden" th:field="${user.phone}" name="phone"/>
+			
+			<button type="submit">Deletar</button>
+	    </form>
+	    
+
+		
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Champion Edit</title>
+</head>
+<body>
+    <h1>Champion Edit</h1>
+    
+		<a th:href="@{'/champion/home/' + ${user.id}}">Voltar</a>
+    
+    <form action="#" th:href="@{'/champion/add/' + ${user.id}}" th:object="${champion}"  method="POST">
+        <input type="hidden" th:field="${champion.id}"/>
+    	Name:<input type="text" th:field="${champion.name}" name="name"/>
+    	Age:<input type="number" th:field="${champion.age}" name="age"/>
+    	Gender:<input type="text" th:field="${champion.gender}" name="gender"/>
+    	<br/>
+    	Height:<input type="number" th:field="${champion.height}" name="height"/>
+    	Weight:<input type="number" th:field="${champion.weight}" name="weight"/>
+    	Story:<input type="text" th:field="${champion.story}" name="story"/>
+    	<br/>
+    	Region:<input type="text" th:field="${champion.region}" name="region"/>
+    	Breed:<input type="text" th:field="${champion.breed}" name="breed"/>
+    	Category:<input type="text" th:field="${champion.category}" name="category"/>
+    	<br/>
+    	Life:<input type="number" th:field="${champion.life}" name="life"/>
+    	Speed:<input type="number" th:field="${champion.speed}" name="speed"/>
+    	Dexterity:<input type="number" th:field="${champion.dexterity}" name="dexterity"/>
+    	<br/>
+    	Strength:<input type="number" th:field="${champion.strngth}" name="strength"/>
+    	Constitution:<input type="number" th:field="${champion.constitution}" name="constitution"/>
+    	Intelligence:<input type="number" th:field="${champion.intelligence}" name="intelligence"/>
+    	<br/>
+    	Sanity:<input type="number" th:field="${champion.sanity}" name="sanity"/>
+    	Charisma:<input type="number" th:field="${champion.charisma}" name="charisma"/>
+    	<br/>
+		<button type="submit">Inserir</button>
+    </form>
+
+		
+</body>
+</html>

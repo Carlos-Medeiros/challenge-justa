@@ -1,0 +1,85 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Champion Details</title>
+</head>
+<body>
+		<a th:href="@{'/champion/home/'}">Voltar</a>
+    <h1>Champion Details</h1>
+		<div>
+			<p>Name: <span th:text="${champion.name}"></span></p>
+			<p>Age: <span th:text="${champion.age}"></span></p>
+			<p>Gender: <span th:text="${champion.gender}"></span></p>
+			<p>Height: <span th:text="${champion.height}"></span></p>
+			<p>Weight: <span th:text="${champion.weight}"></span></p>
+			<p>Story: <span th:text="${champion.story}"></span></p>
+			<p>Region: <span th:text="${champion.region}"></span></p>
+			<p>Breed: <span th:text="${champion.breed}"></span></p>
+			<p>Category: <span th:text="${champion.category}"></span></p>
+			<p>Life: <span th:text="${champion.life}"></span></p>
+			<p>Speed: <span th:text="${champion.speed}"></span></p>
+			<p>Dexterity: <span th:text="${champion.dexterity}"></span></p>
+			<p>Strength: <span th:text="${champion.strength}"></span></p>
+			<p>Constitution: <span th:text="${champion.constitution}"></span></p>
+			<p>Intelligence: <span th:text="${champion.intelligence}"></span></p>
+			<p>Sanity: <span th:text="${champion.sanity}"></span></p>
+			<p>Charisma: <span th:text="${champion.charisma}"></span></p>
+		</div>
+		
+		    <h1>Champion Edit</h1>
+		
+		    <form action="#" th:action="@{/champion/edit/{champId}(champId = ${champion.id})}" th:object="${champion}"  method="POST">
+		        <input type="hidden" th:field="${champion.id}"/>
+		    	Name:<input type="text" th:field="${champion.name}" name="name"/>
+		    	Age:<input type="number" th:field="${champion.age}" name="age"/>
+		    	Gender:<input type="text" th:field="${champion.gender}" name="gender"/>
+		    	<br/>
+		    	Height:<input type="number" th:field="${champion.height}" name="height"/>
+		    	Weight:<input type="number" th:field="${champion.weight}" name="weight"/>
+		    	Story:<input type="text" th:field="${champion.story}" name="story"/>
+		    	<br/>
+		    	Region:<input type="text" th:field="${champion.region}" name="region"/>
+		    	Breed:<input type="text" th:field="${champion.breed}" name="breed"/>
+		    	Category:<input type="text" th:field="${champion.category}" name="category"/>
+		    	<br/>
+		    	Life:<input type="number" th:field="${champion.life}" name="life"/>
+		    	Speed:<input type="number" th:field="${champion.speed}" name="speed"/>
+		    	Dexterity:<input type="number" th:field="${champion.dexterity}" name="dexterity"/>
+		    	<br/>
+		    	Strength:<input type="number" th:field="${champion.strength}" name="strength"/>
+		    	Constitution:<input type="number" th:field="${champion.constitution}" name="constitution"/>
+		    	Intelligence:<input type="number" th:field="${champion.intelligence}" name="intelligence"/>
+		    	<br/>
+		    	Sanity:<input type="number" th:field="${champion.sanity}" name="sanity"/>
+		    	Charisma:<input type="number" th:field="${champion.charisma}" name="charisma"/>
+		    	<br/>
+				<button type="submit">Inserir</button>
+		    </form>
+
+			<h1>Deletar champion</h1>
+			<form action="#" th:action="@{/champion/delete/{champId}(champId = ${champion.id})}" th:object="${champion}"  method="POST">
+
+			    <input type="hidden" th:field="${champion.id}"/>
+		    	<input type="hidden" th:field="${champion.name}" name="name"/>
+		    	<input type="hidden" th:field="${champion.age}" name="age"/>
+		    	<input type="hidden" th:field="${champion.gender}" name="gender"/>
+		    	<input type="hidden" th:field="${champion.height}" name="height"/>
+		    	<input type="hidden" th:field="${champion.weight}" name="weight"/>
+		    	<input type="hidden" th:field="${champion.story}" name="story"/>
+		    	<input type="hidden" th:field="${champion.region}" name="region"/>
+		    	<input type="hidden" th:field="${champion.breed}" name="breed"/>
+		    	<input type="hidden" th:field="${champion.category}" name="category"/>
+		    	<input type="hidden" th:field="${champion.life}" name="life"/>
+		    	<input type="hidden" th:field="${champion.speed}" name="speed"/>
+		    	<input type="hidden" th:field="${champion.dexterity}" name="dexterity"/>
+		    	<input type="hidden" th:field="${champion.strength}" name="strength"/>
+		    	<input type="hidden" th:field="${champion.constitution}" name="constitution"/>
+		    	<input type="hidden" th:field="${champion.intelligence}" name="intelligence"/>
+		    	<input type="hidden" th:field="${champion.sanity}" name="sanity"/>
+		    	<input type="hidden" th:field="${champion.charisma}" name="charisma"/>
+			
+			<button type="submit">Deletar</button>
+	    </form>
+</body>
+</html>

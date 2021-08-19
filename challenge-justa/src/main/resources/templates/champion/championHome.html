@@ -1,0 +1,23 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Champion Home</title>
+</head>
+<body>
+
+	<a th:href="@{'/champion/add/'}">Adicionar Campeão</a>
+
+    <h1>Champion Home</h1>
+		<tr th:each="champion : ${champions}">
+			<td th:text="${champion.id}"></td>
+			<td th:text="${champion.name}"></td>
+			<td th:text="${champion.breed}"></td>
+			<td th:text="${champion.category}"></td>
+			<td><a th:href="@{/champion/view/{champId}(champId = ${champion.id})}">Ver Campeão</a></td>
+			<br/>
+		</tr>
+
+		
+</body>
+</html>
