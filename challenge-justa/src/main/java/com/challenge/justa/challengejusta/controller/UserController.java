@@ -1,10 +1,11 @@
 package com.challenge.justa.challengejusta.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,22 +13,21 @@ import com.challenge.justa.challengejusta.dto.UserDTO;
 import com.challenge.justa.challengejusta.services.UserService;
 
 @RestController
-@RequestMapping(value = "/user")
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/{id}")
-	public ModelAndView search(@PathVariable Long id) {
+	@GetMapping("/home")
+	public ModelAndView home() {
 		ModelAndView mv = new ModelAndView("user");
-		UserDTO dto = userService.search(id);
+		List<UserDTO> dto = userService.findAll();
 		mv.setViewName("home/home");
-		mv.addObject("user", dto);
+		mv.addObject("users", dto);
 		return mv;
 	}
 	
-	@GetMapping("/register")
+	@GetMapping("/")
 	public ModelAndView search() {
 		ModelAndView mv = new ModelAndView("user");
 		mv.setViewName("register/register");
@@ -38,8 +38,7 @@ public class UserController {
 	public ModelAndView register(UserDTO dto) {
 		ModelAndView mv = new ModelAndView("register");
 		dto = userService.register(dto);
-		mv.setViewName("home/home");
-		mv.addObject("user", dto);
+		mv.setViewName("register/registerSuccessful");
 		return mv;
 	}
 	
@@ -52,12 +51,11 @@ public class UserController {
 		return mv; 
 	}
 	
-	@PostMapping("/edit")
-	public ModelAndView putUser(UserDTO dto) {
+	@PostMapping("/edit/{id}")
+	public ModelAndView putUser(UserDTO dto, @PathVariable Long id) {
 		ModelAndView mv = new ModelAndView("update");
-		dto = userService.edit(dto);
+		dto = userService.edit(dto,id);
 		mv.setViewName("home/home");
-		mv.addObject("user", dto);
 		return mv; 
 	}
 	
@@ -66,7 +64,7 @@ public class UserController {
 	public ModelAndView deleteUser(UserDTO dto) {
 		ModelAndView mv = new ModelAndView("update");
 		 dto = userService.deleteUser(dto);
-		mv.setViewName("register/register");
+		mv.setViewName("home/home");
 		return mv; 
 	}
 	

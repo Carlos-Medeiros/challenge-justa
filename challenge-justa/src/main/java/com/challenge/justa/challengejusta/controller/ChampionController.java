@@ -12,9 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.challenge.justa.challengejusta.dto.ChampionDTO;
 import com.challenge.justa.challengejusta.dto.RegionDTO;
-import com.challenge.justa.challengejusta.dto.UserDTO;
 import com.challenge.justa.challengejusta.services.ChampionService;
-import com.challenge.justa.challengejusta.services.UserService;
 
 @RestController
 @RequestMapping(value = "/champion")
@@ -22,9 +20,6 @@ public class ChampionController {
 
 	@Autowired
 	private ChampionService championService;
-	
-	@Autowired
-	private UserService userService;
 	
 	@GetMapping("/view/{id}")
 	public ModelAndView search(ChampionDTO dto, @PathVariable Long id) {

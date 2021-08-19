@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <title>Register</title>
 </head>
 <body>
     <h1>Cadastro</h1>
-    <form method="POST">
+    <form action="#" th:action="@{/register}" method="POST">
     	UserName:<input type="text" value="" name="userName"/>
     	Name:<input type="text" value="" name="name"/>
     	Password:<input type="password" value="" name="password"/>

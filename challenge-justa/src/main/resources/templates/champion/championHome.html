@@ -5,8 +5,9 @@
     <title>Champion Home</title>
 </head>
 <body>
+    <a th:href="@{'/home'}">Back</a>
 
-	<a th:href="@{'/champion/add/'}">Adicionar Campeão</a>
+	<a th:href="@{'/champion/add/'}">Add Champion</a>
 
     <h1>Champion Home</h1>
 		<tr th:each="champion : ${champions}">
@@ -14,7 +15,7 @@
 			<td th:text="${champion.name}"></td>
 			<td th:text="${champion.breed}"></td>
 			<td th:text="${champion.category}"></td>
-			<td><a th:href="@{/champion/view/{champId}(champId = ${champion.id})}">Ver Campeão</a></td>
+			<td><a th:href="@{/champion/view/{champId}(champId = ${champion.id})}">To see Champion</a></td>
 			<br/>
 		</tr>
 

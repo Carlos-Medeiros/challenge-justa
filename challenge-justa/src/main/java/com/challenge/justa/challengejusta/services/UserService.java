@@ -1,14 +1,20 @@
 package com.challenge.justa.challengejusta.services;
 
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import com.challenge.justa.challengejusta.dto.ChampionDTO;
 import com.challenge.justa.challengejusta.dto.PhoneDTO;
 import com.challenge.justa.challengejusta.dto.UserConfigDTO;
 import com.challenge.justa.challengejusta.dto.UserDTO;
+import com.challenge.justa.challengejusta.model.Champion;
 import com.challenge.justa.challengejusta.model.User;
 import com.challenge.justa.challengejusta.repositories.UserRepository;
 import com.challenge.justa.challengejusta.util.Util;
@@ -26,29 +32,30 @@ public class UserService {
 	}
 	
 	@Transactional
-	public UserConfigDTO searchUserConfig(Long id) {
-		User user = userRepository.getById(id);
-		return new UserConfigDTO(user);
-	}
-	
-	@Transactional
-	public UserConfigDTO searchUserConfigName(String userName) {
+	public UserDTO searchName(String userName) {
 		User user = userRepository.findByUserName(userName);
-		return new UserConfigDTO(user);
+		user = userRepository.getById(user.getId());
+		return new UserDTO(user);
 	}
 	
+	@Transactional(readOnly = true)
+	public List<UserDTO> findAll() {
+		List<User> list = userRepository.findAll();
+		return list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
+	}
 	
 	
 	@Transactional
 	public UserDTO register(UserDTO dto) {
-		User user = new User(null, dto.getUserName(), dto.getName(), Util.md5(dto.getPassword()), dto.getPhone());	
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String encodedPassword = encoder.encode(dto.getPassword());
+		User user = new User(null, dto.getUserName(), dto.getName(), encodedPassword, dto.getPhone());	
 		
 		RestTemplate restTemplate = new RestTemplate();
 
 		
 	    PhoneDTO phoneDTO = restTemplate.getForObject(
-	    		"http://apilayer.net/api/validate?access_key=a7982d8f6313b428afdbce2bd9d1f922&number=" + user.getPhone() +"&country_code=BR&format=1", PhoneDTO.class);
-
+	    		"http://apilayer.net/api/validate?access_key=0e8614a7d82db89f02ebfa5ab4e0791d&number=" + user.getPhone() +"&country_code=BR&format=1", PhoneDTO.class);
 		
 		if (userRepository.findByUserName(dto.getUserName()) == null && phoneDTO.isValid()) {
 			user = userRepository.save(user);
@@ -58,8 +65,9 @@ public class UserService {
 	}
 	
 	@Transactional
-	public UserDTO edit(UserDTO dto) {
-		User user = userRepository.getById(dto.getId());
+	public UserDTO edit(UserDTO dto, Long id) {
+		User user = userRepository.getById(id);
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.getId();
 
 		if (dto.getUserName() == null) {
@@ -81,7 +89,8 @@ public class UserService {
 		if (dto.getPassword() == null) {
 			user.getPassword();
 		} else {
-			user.setPassword(Util.md5(dto.getPassword()));
+			String encodedPassword = encoder.encode(dto.getPassword());
+			user.setPassword(encodedPassword);
 		}
 		if (dto.getPhone() == null) {
 			user.getPhone();
@@ -90,7 +99,7 @@ public class UserService {
 			RestTemplate restTemplate = new RestTemplate();
 
 		    PhoneDTO phoneDTO = restTemplate.getForObject(
-		    		"http://apilayer.net/api/validate?access_key=a7982d8f6313b428afdbce2bd9d1f922&number=" + dto.getPhone() +"&country_code=BR&format=1", PhoneDTO.class);
+		    		"http://apilayer.net/api/validate?access_key=0e8614a7d82db89f02ebfa5ab4e0791d&number=" + dto.getPhone() +"&country_code=BR&format=1", PhoneDTO.class);
 		    if (phoneDTO.isValid()) {
 				user.setPhone(dto.getPhone());
 		    } else {

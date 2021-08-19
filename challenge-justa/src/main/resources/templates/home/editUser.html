@@ -2,21 +2,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <title>Edit user</title>
 </head>
 <body>
-        <h1>Editar conta</h1>
-    <form action="#" th:action="@{/user/edit}" th:object="${user}"  method="POST">
+    <a th:href="@{'/home'}">Back</a>
+
+      <h1>Edit user</h1>
+      <p  th:text="${user.id}"></p>
+	    <form action="#" th:action="@{/edit/{userId}(userId = ${user.id})}" th:object="${user}"  method="POST">
+	    
+	    	<input type="hidden" th:field="${user.id}"/>
+	    	<input type="hidden" th:field="${user.userName}" name="userName"/>
+	    	Name:<input type="text" th:field="${user.name}" name="name"/>
+	    	Password:<input type="password" th:field="${user.password}" name="password"/>
+	    	Phone:<input type="text" th:field="${user.phone}" name="phone"/>
+			
+			<button type="submit">Edit</button>
+	    </form>
     
-    	<input type="hidden" th:field="${user.id}"/>
-    	UserName:<input type="text" th:field="${user.userName}" name="userName"/>
-    	Name:<input type="text" th:field="${user.name}" name="name"/>
-    	Password:<input type="password" th:field="${user.password}" name="password"/>
-    	Phone:<input type="text" th:field="${user.phone}" name="phone"/>
-		
-		<button type="submit">Editar</button>
-    </form>
+		<h1>Delete account</h1>
+		<form action="#" th:action="@{/delete}" th:object="${user}"  method="POST">
     
-    <a th:href="@{'/user/' + ${user.id}}">Voltar</a>
+	    	<input type="hidden" th:field="${user.id}"/>
+	    	<input type="hidden" th:field="${user.userName}" name="userName"/>
+	    	<input type="hidden" th:field="${user.name}" name="name"/>
+	    	<input type="hidden" th:field="${user.password}" name="password"/>
+	    	<input type="hidden" th:field="${user.phone}" name="phone"/>
+			
+			<button type="submit">Delete</button>
+    	</form>
+    
 </body>
 </html>

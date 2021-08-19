@@ -1,11 +1,14 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <title>Champion Details</title>
 </head>
 <body>
-		<a th:href="@{'/champion/home/'}">Voltar</a>
+		<a th:href="@{'/champion/home/'}">Back</a>
     <h1>Champion Details</h1>
 		<div>
 			<p>Name: <span th:text="${champion.name}"></span></p>
@@ -54,10 +57,10 @@
 		    	Sanity:<input type="number" th:field="${champion.sanity}" name="sanity"/>
 		    	Charisma:<input type="number" th:field="${champion.charisma}" name="charisma"/>
 		    	<br/>
-				<button type="submit">Inserir</button>
+				<button type="submit">Insert</button>
 		    </form>
 
-			<h1>Deletar champion</h1>
+			<h1>Delete champion</h1>
 			<form action="#" th:action="@{/champion/delete/{champId}(champId = ${champion.id})}" th:object="${champion}"  method="POST">
 
 			    <input type="hidden" th:field="${champion.id}"/>
@@ -79,7 +82,8 @@
 		    	<input type="hidden" th:field="${champion.sanity}" name="sanity"/>
 		    	<input type="hidden" th:field="${champion.charisma}" name="charisma"/>
 			
-			<button type="submit">Deletar</button>
+			<button type="submit">Delete</button>
 	    </form>
+
 </body>
 </html>
