@@ -15,7 +15,6 @@
 				<td th:text="${region.name}"></td>
 				<br/>
 			</tr>
-    	
     <h1>Champion Details</h1>
 	<form action="#" th:action="@{'/champion/add'}" th:object="${champion}"  method="POST">
     	Name:<input type="text" value="" name="name"/>
@@ -26,7 +25,7 @@
     	Weight:<input type="number" value="" name="weight"/>
     	Story:<input type="text" value="" name="story"/>
     	<br/>
-    	Region:<input type="text" value="" name="region"/>
+    	<p>Enter region id </p>Region:<input type="text" value="" name="region"/>
     	Breed:<input type="text" value="" name="breed"/>
     	Category:<input type="text" value="" name="category"/>
     	<br/>

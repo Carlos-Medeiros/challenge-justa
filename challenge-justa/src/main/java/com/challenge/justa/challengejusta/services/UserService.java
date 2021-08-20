@@ -10,14 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import com.challenge.justa.challengejusta.dto.ChampionDTO;
 import com.challenge.justa.challengejusta.dto.PhoneDTO;
-import com.challenge.justa.challengejusta.dto.UserConfigDTO;
 import com.challenge.justa.challengejusta.dto.UserDTO;
-import com.challenge.justa.challengejusta.model.Champion;
 import com.challenge.justa.challengejusta.model.User;
 import com.challenge.justa.challengejusta.repositories.UserRepository;
-import com.challenge.justa.challengejusta.util.Util;
 
 @Service
 public class UserService {
