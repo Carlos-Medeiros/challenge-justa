@@ -104,3 +104,5 @@ As seguintes ferramentas foram usadas na construção do projeto:
  <br />
 
 [![Gmail Badge](https://img.shields.io/badge/-josemedeiros.jcmf@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:josemedeiros.jcmf@gmail.com)](mailto:josemedeiros.jcmf@gmail.com)
+
+Link de referencia https://github.com/tgmarinho/README-ecoleta/blob/master/README-sem-logo.md
